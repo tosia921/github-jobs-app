@@ -1,13 +1,10 @@
 import React from 'react';
-import useWindowSize from './custom-hooks/useWindowSize';
+import Header from './components/Header';
 
 function App() {
-    const [height, width] = useWindowSize();
-
     return (
         <div className="App">
-            <h1>tomek</h1>
-            height: {height}, width: {width}
+            <Header />
         </div>
     );
 }
