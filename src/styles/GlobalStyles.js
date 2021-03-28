@@ -22,6 +22,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-size: 2rem;
     box-sizing: border-box;
+    background-color: var(--LightGrey);
   }
 
   img {

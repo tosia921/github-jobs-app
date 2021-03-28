@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const Typography = createGlobalStyle`
   html {
     font-family: 'Kumbh Sans', sans-serif; 
-    color: var(--VeryDarkBlue);
+    color: var(--White);
   }
   p, li {
     font-size: 1.6rem;
