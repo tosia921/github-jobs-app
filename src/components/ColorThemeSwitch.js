@@ -61,6 +61,9 @@ const ThemeSwitchWrapper = styled.div`
         input:checked + .slider:before {
             transform: translateX(24px);
         }
+        .slider:hover:before {
+            background-color: #939bf4;
+        }
         .slider.round {
             border-radius: 34px;
         }
