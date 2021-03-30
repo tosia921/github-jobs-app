@@ -22,11 +22,12 @@ const SearchBar = () => {
                     <img src={locationIcon} alt="location icon" />
                     <input type="text" placeholder="Filter by location..." />
                 </div>
-                <div className="input-group input-fulltime">
-                    <label htmlFor="fulltime">
+                <div className="input-group input-fulltime-search">
+                    <label htmlFor="fulltime" className="label-checkbox">
                         <input type="checkbox" id="fulltime" name="fulltime" />
-                        Full Time
+                        Full Time Only
                     </label>
+                    <button type="submit">Search</button>
                 </div>
             </SearchForm>
         </SearchBarContainer>
@@ -60,11 +61,13 @@ const SearchForm = styled.form`
     padding-left: 3.2rem;
     .input-group {
         height: 100%;
-        border-right: 1px solid #979797;
         display: flex;
         align-items: center;
         &:not(:first-child) {
             padding-left: 2.2rem;
+        }
+        &:not(:last-child) {
+            border-right: 1px solid #979797;
         }
 
         input {
@@ -81,11 +84,12 @@ const SearchForm = styled.form`
 
         #fulltime {
             height: 2.4rem;
+            width: 2.4rem;
+            margin-right: 1.7rem;
         }
 
         label {
             width: 100%;
-            display: flex;
         }
     }
 
@@ -94,10 +98,19 @@ const SearchForm = styled.form`
     }
 
     .input-location {
-        width: 25%;
+        width: 30%;
     }
-    .input-fulltime {
-        width: 25%;
+    .input-fulltime-search {
+        width: 30%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .label-checkbox {
+            display: flex;
+            align-items: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
     }
 
     img {
