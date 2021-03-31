@@ -11,6 +11,9 @@ const StyledButton = styled.button`
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    @media only screen and (min-width: 950px) {
+        padding: 0 1rem;
+    }
     &:hover {
         background-color: ${(props) =>
             props.Secondary ? 'var(--color-button-secondary-hover)' : 'var(--color-button-primary-hover)'};

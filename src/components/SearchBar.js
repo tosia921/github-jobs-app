@@ -27,7 +27,7 @@ const SearchBar = () => {
                 <div className="input-group input-fulltime-search">
                     <label htmlFor="fulltime" className="label-checkbox">
                         <input type="checkbox" id="fulltime" name="fulltime" />
-                        Full Time Only
+                        {window.innerWidth > 1150 ? 'Full Time Only' : 'Full Time'}
                     </label>
                     <CustomButton type="submit">Search</CustomButton>
                 </div>
@@ -88,8 +88,8 @@ const SearchForm = styled.form`
             height: 2.4rem;
             width: 2.4rem;
             margin-right: 1.7rem;
-            &:checked {
-                background-color: red;
+            @media only screen and (max-width: 1110px) {
+                margin-right: 1rem;
             }
         }
 
@@ -110,7 +110,6 @@ const SearchForm = styled.form`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-right: 1.5rem;
 
         .label-checkbox {
             display: flex;
