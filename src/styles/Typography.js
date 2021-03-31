@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const Typography = createGlobalStyle`
   html {
     font-family: 'Kumbh Sans', sans-serif; 
-    color: var(--VeryDarkBlue);
+    color: var(--color-text-small);
   }
   p, li {
     font-size: 1.6rem;
@@ -31,7 +31,7 @@ const Typography = createGlobalStyle`
     margin: 0;
   }
   a {
-    color: var(--VeryDarkBlue);
+    color: var(--color-text-link);
     text-decoration-color: none;
   }
  

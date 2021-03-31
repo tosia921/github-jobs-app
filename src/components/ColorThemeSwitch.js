@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 // icons
 import sun from '../assets/desktop/icon-sun.svg';
 import moon from '../assets/desktop/icon-moon.svg';
 
-const ColorThemeSwitch = () => (
-    <ThemeSwitchWrapper>
-        <img src={sun} alt="sun" />
-        <label htmlFor="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div className="slider round" />
-        </label>
-        <img src={moon} alt="moon" />
-    </ThemeSwitchWrapper>
-);
+const ColorThemeSwitch = () => {
+    const [theme, setTheme] = useState('light');
+    const nextTheme = theme === 'light' ? 'dark' : 'light';
+
+    useEffect(() => {
+        document.body.dataset.theme = theme;
+    }, [theme]);
+    return (
+        <ThemeSwitchWrapper>
+            <img src={sun} alt="sun" />
+            <label htmlFor="checkbox">
+                <input type="checkbox" id="checkbox" onChange={() => setTheme(nextTheme)} />
+                <div className="slider round" />
+            </label>
+            <img src={moon} alt="moon" />
+        </ThemeSwitchWrapper>
+    );
+};
 
 export default ColorThemeSwitch;
 

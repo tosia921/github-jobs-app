@@ -1,28 +1,42 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-  :root {
-      //Primary Colors
-    --Violet: #9e7f66;
-    --LightViolet: #939BF4;
-    --VeryDarkBlue: #19202D;
-    --Midnight: #121721 ;
-      //Secondary Colors
-    --White: #FFFFFF;
-    --LightGrey: #F4F6F8;
-    --Gray: #9DAEC2;
-    --DarkGrey: #6E8098 ;
+  body[data-theme='light'] {
+    --color-primary: #5964E0;
+    --color-primary-light: #939BF4;
+    --bg-color-body: #F4F6F8;
+    --bg-color-card: #FFFFFF;
+    --color-text-titles: #19202D; 
+    --color-text-small: #9DAEC2;
+    --color-text-link: #5964E0;
+    --color-button-primary: #5964E0;
+    --color-button-primary-hover: #939BF4;
+    --color-button-secondary: #C9C9C9;  
+    --color-button-secondary-hover: #6E8098;
+    --color-logo: #FFFFFF;   
   }
-
+  body[data-theme='dark'] {
+    --color-primary: #5964E0;
+    --color-primary-light: #939BF4;
+    --bg-color-body: #121721;
+    --bg-color-card: #222121;
+    --color-text-titles: #FFFFFF  ; 
+    --color-text-small: #9DAEC2;
+    --color-text-link: #5964E0;
+    --color-button-primary: #5964E0;
+    --color-button-primary-hover: #939BF4;
+    --color-button-secondary: #303642;  
+    --color-button-secondary-hover: #535862;
+    --color-logo: #FFFFFF; 
+  }
+ 
   html {
-    background-color: var(--white);
     font-size: 10px;
+    box-sizing: border-box;
   }
 
   body {
-    font-size: 2rem;
-    box-sizing: border-box;
-    background-color: var(--LightGrey);
+    background-color: var(--bg-color-body);
   }
 
   img {

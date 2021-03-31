@@ -38,7 +38,7 @@ export default SearchBar;
 
 const SearchBarContainer = styled.section`
     height: 8rem;
-    background-color: var(--White);
+    background-color: #ffffff;
     margin: -4rem 16rem 4rem 16rem;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border-radius: 5px;

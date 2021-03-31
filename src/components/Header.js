@@ -42,5 +42,8 @@ const StyledHeader = styled.header`
         @media only screen and (max-width: 375px) {
             padding: 3.2rem 4.8rem 0 4.8rem;
         }
+        h1 {
+            color: var(--color-logo);
+        }
     }
 `;
