@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+// Components
+import CustomButton from './CustomButton';
 // Icons
 import searchIcon from '../assets/desktop/icon-search.svg';
 import locationIcon from '../assets/desktop/icon-location.svg';
@@ -27,7 +29,7 @@ const SearchBar = () => {
                         <input type="checkbox" id="fulltime" name="fulltime" />
                         Full Time Only
                     </label>
-                    <button type="submit">Search</button>
+                    <CustomButton type="submit">Search</CustomButton>
                 </div>
             </SearchForm>
         </SearchBarContainer>
@@ -86,6 +88,9 @@ const SearchForm = styled.form`
             height: 2.4rem;
             width: 2.4rem;
             margin-right: 1.7rem;
+            &:checked {
+                background-color: red;
+            }
         }
 
         label {
@@ -105,6 +110,8 @@ const SearchForm = styled.form`
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-right: 1.5rem;
+
         .label-checkbox {
             display: flex;
             align-items: center;
