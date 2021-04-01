@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-
 import { useSelector } from 'react-redux';
+// Components
 import SingleJobCard from './SingleJobCard';
 
 const JobList = () => {
+    // using useSelector to acces data from the store(global state)
     const JobsList = useSelector((state) => state.jobs);
-
-    console.log(JobsList);
-
-    return <JobListContainer>bla bla</JobListContainer>;
+    // in return mapping throught all joblist.data array and passing down data to SingleJobCard component to render each job on the screen
+    return (
+        <JobListContainer>
+            {JobsList.jobsList.data.map((job) => (
+                <SingleJobCard key={job.id} job={job} />
+            ))}
+        </JobListContainer>
+    );
 };
 
 export default JobList;
