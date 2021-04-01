@@ -1,16 +1,16 @@
 import React from 'react';
 // compnents
-import Header from './components/Header';
-import SearchBar from './components/SearchBar';
-import JobList from './components/JobList';
+import { Provider } from 'react-redux';
+import HomePage from './pages/HomePage';
+
+// Redux
+import store from './redux/store';
 
 function App() {
     return (
-        <div className="App">
-            <Header />
-            <SearchBar />
-            <JobList />
-        </div>
+        <Provider store={store}>
+            <HomePage />
+        </Provider>
     );
 }
 

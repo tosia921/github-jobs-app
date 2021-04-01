@@ -5,7 +5,6 @@ const SingleJobCard = () => {
     const a = 3;
     return (
         <StyledCard>
-            <h2>tomek</h2>
             <h2>posiadala</h2>
         </StyledCard>
     );

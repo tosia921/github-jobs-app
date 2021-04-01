@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
-// Components
+
+import { useSelector, useDispatch } from 'react-redux';
 import SingleJobCard from './SingleJobCard';
+import { fetchJobList } from '../redux/jobs/jobsSlice';
 
 const JobList = () => {
-    const cards = [10, 0, 9, 8, 6, 5, 4, 2, 2, 1, 7, 5, 3];
+    const dispatch = useDispatch();
+    const JobsList = useSelector((state) => state.jobs);
 
-    return (
-        <JobListContainer>
-            {cards.map((card) => (
-                <SingleJobCard key={card.indexOf} />
-            ))}
-        </JobListContainer>
-    );
+    const params = {
+        description: 'front end',
+        location: 'united stated',
+    };
+
+    useEffect(() => {
+        dispatch(fetchJobList(params));
+    }, [dispatch]);
+
+    console.log(JobsList);
+
+    return <JobListContainer>bla bla</JobListContainer>;
 };
 
 export default JobList;
@@ -26,7 +33,6 @@ const JobListContainer = styled.section`
     grid-template-columns: repeat(4, minmax(200px, 1fr));
     grid-auto-rows: 253px;
     gap: 2rem;
-
     @media only screen and (max-width: 1440px) {
         grid-template-columns: repeat(3, minmax(200px, 1fr));
     }
