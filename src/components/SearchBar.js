@@ -1,13 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 // Components
 import CustomButton from './CustomButton';
 // Icons
 import searchIcon from '../assets/desktop/icon-search.svg';
 import locationIcon from '../assets/desktop/icon-location.svg';
+// Redux AsyncThunk
+import { fetchJobList } from '../redux/jobs/jobsSlice';
 
 const SearchBar = () => {
-    const a = 3;
+    // defining state for each input field
+    const [description, setDescription] = useState('');
+    const [location, setLocation] = useState('');
+    const [fulltime, setFulltime] = useState('off');
+    // here we check if fulltime checkbox is checked or not, had to do it this way because github api requried to set full_time param to either 'on' or 'off'
+    const isFulltimeOn = fulltime === 'on' ? 'off' : 'on';
+    // changing state value of the fulltime checkbox based on variables defined above
+    const handleFulltime = () => {
+        setFulltime(isFulltimeOn);
+    };
+
+    const dispatch = useDispatch();
+
+    // handling Form submit(job search button)
+    const handleSubmit = (e) => {
+        // preventing default behaviour of the form to not refresh the page
+        e.preventDefault();
+        // setting params object to input values
+        const params = {
+            description,
+            location,
+            full_time: fulltime,
+        };
+        // dispatching fetchJobList action to get the data back
+        dispatch(fetchJobList(params));
+    };
+
     return (
         <SearchBarContainer>
             <SearchForm>
@@ -18,18 +47,25 @@ const SearchBar = () => {
                         placeholder={
                             window.innerWidth > 1110 ? 'Filter by title, companies, expertise...' : 'Filter by Title'
                         }
+                        onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
                 <div className="input-group input-location">
                     <img src={locationIcon} alt="location icon" />
-                    <input type="text" placeholder="Filter by location..." />
+                    <input
+                        type="text"
+                        placeholder="Filter by location..."
+                        onChange={(e) => setLocation(e.target.value)}
+                    />
                 </div>
                 <div className="input-group input-fulltime-search">
                     <label htmlFor="fulltime" className="label-checkbox">
-                        <input type="checkbox" id="fulltime" name="fulltime" />
+                        <input type="checkbox" id="fulltime" name="fulltime" onClick={handleFulltime} />
                         {window.innerWidth > 1150 ? 'Full Time Only' : 'Full Time'}
                     </label>
-                    <CustomButton type="submit">Search</CustomButton>
+                    <CustomButton type="submit" onClick={handleSubmit}>
+                        Search
+                    </CustomButton>
                 </div>
             </SearchForm>
         </SearchBarContainer>

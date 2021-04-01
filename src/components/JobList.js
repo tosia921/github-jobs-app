@@ -1,22 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import SingleJobCard from './SingleJobCard';
-import { fetchJobList } from '../redux/jobs/jobsSlice';
 
 const JobList = () => {
-    const dispatch = useDispatch();
     const JobsList = useSelector((state) => state.jobs);
-
-    const params = {
-        description: 'front end',
-        location: 'united stated',
-    };
-
-    useEffect(() => {
-        dispatch(fetchJobList(params));
-    }, [dispatch]);
 
     console.log(JobsList);
 
