@@ -19,7 +19,7 @@ const GlobalStyles = createGlobalStyle`
     --color-primary: #5964E0;
     --color-primary-light: #939BF4;
     --bg-color-body: #121721;
-    --bg-color-card: #222121;
+    --bg-color-card: #19202D;
     --color-text-titles: #FFFFFF  ; 
     --color-text-small: #9DAEC2;
     --color-text-link: #5964E0;

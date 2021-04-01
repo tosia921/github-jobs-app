@@ -110,6 +110,7 @@ const SearchForm = styled.form`
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding-right: 1.5rem;
 
         .label-checkbox {
             display: flex;

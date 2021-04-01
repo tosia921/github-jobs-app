@@ -11,7 +11,7 @@ const StyledButton = styled.button`
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    @media only screen and (min-width: 950px) {
+    @media only screen and (max-width: 1130px) {
         padding: 0 1rem;
     }
     &:hover {
