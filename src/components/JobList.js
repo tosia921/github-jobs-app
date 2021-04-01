@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 // Components
 import SingleJobCard from './SingleJobCard';
 
 const JobList = () => {
     const cards = [10, 0, 9, 8, 6, 5, 4, 2, 2, 1, 7, 5, 3];
+
     return (
         <JobListContainer>
             {cards.map((card) => (
