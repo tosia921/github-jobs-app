@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import Loader from 'react-loader-spinner';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 // Components
 import SingleJobCard from './SingleJobCard';
 
@@ -10,9 +12,22 @@ const JobList = () => {
     // in return mapping throught all joblist.data array and passing down data to SingleJobCard component to render each job on the screen
     return (
         <JobListContainer>
-            {JobsList.jobsList.data.map((job) => (
-                <SingleJobCard key={job.id} job={job} />
-            ))}
+            {JobsList.jobsList.status === 'idle' && <h2 className="h2-searchactions">Search For Jobs</h2>}
+            {JobsList.jobsList.status === 'success' && JobsList.jobsList.data.length === 0 && (
+                <h2 className="h2-searchactions">No Jobs Match Your Search, Try Again.</h2>
+            )}
+            {JobsList.jobsList.status === 'loading' ? (
+                <Loader
+                    className="center-spinner"
+                    type="TailSpin"
+                    color="#5964E0"
+                    height={150}
+                    width={150}
+                    timeout={3000} // 3 secs
+                />
+            ) : (
+                JobsList.jobsList.data.map((job) => <SingleJobCard key={job.id} job={job} />)
+            )}
         </JobListContainer>
     );
 };
@@ -23,6 +38,7 @@ const JobListContainer = styled.section`
     height: 50rem;
     background-color: var(--bg-color);
     display: grid;
+    position: relative;
     grid-auto-rows: 253px;
     grid-gap: 5rem 2rem;
     @media only screen and (min-width: 1440px) {
@@ -36,5 +52,12 @@ const JobListContainer = styled.section`
     @media only screen and (max-width: 768px) {
         margin: 6rem 2.4rem 4rem 2.4rem;
         grid-template-columns: repeat(1, minmax(320px, 1fr));
+    }
+    .center-spinner,
+    .h2-searchactions {
+        position: absolute;
+        top: 200px;
+        left: 50%;
+        transform: translate(-50%, 0);
     }
 `;
