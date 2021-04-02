@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
+import react from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 // Components
 import SingleJobCard from './SingleJobCard';
 import CustomButton from './CustomButton';
+// Redux actions
+import { addNextJobs } from '../redux/jobs/jobsSlice';
 
 const JobList = () => {
     // using useSelector to acces data from the store(global state)
     const JobsList = useSelector((state) => state.jobs);
-    // in return mapping throught all joblist.data array and passing down data to SingleJobCard component to render each job on the screen
+    const JobsToDisplay = useSelector((state) => state.jobs.visibleJobs);
 
-    // setting state variable visibleJobs to hold number of jobs we want do display, initialy 12.
-    const [visibleJobs, setVisibleJobs] = useState(12);
+    const dispatch = useDispatch();
 
     // adding extra 12 jobs when clicking LOAD MORE button.
     const handleLoadMore = () => {
-        setVisibleJobs((prevVisibleJobs) => prevVisibleJobs + 12);
+        dispatch(addNextJobs());
     };
     return (
         <PageContainer>
@@ -39,7 +40,9 @@ const JobList = () => {
                         timeout={3000} // 3 secs
                     />
                 ) : (
-                    JobsList.jobsList.data.slice(0, visibleJobs).map((job) => <SingleJobCard key={job.id} job={job} />)
+                    JobsList.jobsList.data
+                        .slice(0, JobsToDisplay)
+                        .map((job) => <SingleJobCard key={job.id} job={job} />)
                 )}
             </JobListContainer>
             <CustomButton className="load-more-button" onClick={handleLoadMore}>

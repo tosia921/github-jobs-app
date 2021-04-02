@@ -6,8 +6,8 @@ import CustomButton from './CustomButton';
 // Icons
 import searchIcon from '../assets/desktop/icon-search.svg';
 import locationIcon from '../assets/desktop/icon-location.svg';
-// Redux AsyncThunk
-import { fetchJobList } from '../redux/jobs/jobsSlice';
+// Redux AsyncThunk and action's
+import { fetchJobList, setDefaultJobs } from '../redux/jobs/jobsSlice';
 
 const SearchBar = () => {
     // defining state for each input field
@@ -45,6 +45,7 @@ const SearchBar = () => {
         };
         // dispatching fetchJobList action to get the data back
         dispatch(fetchJobList(params));
+        dispatch(setDefaultJobs());
     };
 
     return (

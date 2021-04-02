@@ -19,13 +19,21 @@ const jobsInitialState = {
         data: [],
         error: {},
     },
+    visibleJobs: 12,
 };
 
 // Creating jobsSlice, which will handle jobs piece(slice) of our global state(store)
 export const jobsSlice = createSlice({
     name: 'jobs',
     initialState: jobsInitialState,
-    reducers: {},
+    reducers: {
+        addNextJobs: (state) => {
+            state.visibleJobs += 12;
+        },
+        setDefaultJobs: (state) => {
+            state.visibleJobs = 12;
+        },
+    },
     extraReducers: {
         [fetchJobList.pending]: (state) => {
             state.jobsList = {
@@ -50,5 +58,7 @@ export const jobsSlice = createSlice({
         },
     },
 });
+
+export const { addNextJobs, setDefaultJobs } = jobsSlice.actions;
 
 export default jobsSlice.reducer;
