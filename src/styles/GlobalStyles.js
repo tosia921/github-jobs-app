@@ -35,6 +35,10 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  * {
+  box-sizing: border-box;
+  }
+
   body {
     background-color: var(--bg-color-body);
   }

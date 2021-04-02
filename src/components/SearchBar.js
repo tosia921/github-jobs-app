@@ -82,11 +82,14 @@ const SearchBarContainer = styled.section`
     border-radius: 5px;
     display: flex;
     align-items: center;
-    @media only screen and (max-width: 768px) {
-        margin: -4rem 7.9rem 0 7.9rem;
+    @media only screen and (min-width: 1440px) {
+        margin: -4rem 16rem 0 16rem;
     }
-    @media only screen and (max-width: 375px) {
-        margin: -4rem 4.8rem 0 4.8rem;
+    @media only screen and (max-width: 1439px) {
+        margin: -4rem 4rem 0 4rem;
+    }
+    @media only screen and (max-width: 768px) {
+        margin: -4rem 2.4rem 0 2.4rem;
     }
 `;
 

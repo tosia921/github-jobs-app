@@ -21,23 +21,20 @@ export default JobList;
 
 const JobListContainer = styled.section`
     height: 50rem;
-    padding: 0 16rem;
     background-color: var(--bg-color);
     display: grid;
-    grid-template-columns: repeat(4, minmax(200px, 1fr));
     grid-auto-rows: 253px;
-    gap: 2rem;
-    @media only screen and (max-width: 1440px) {
-        grid-template-columns: repeat(3, minmax(200px, 1fr));
+    grid-gap: 5rem 2rem;
+    @media only screen and (min-width: 1440px) {
+        margin: 6rem 16rem 4rem 16rem;
+        grid-template-columns: repeat(3, minmax(350px, 1fr));
     }
-    @media only screen and (max-width: 1050px) {
-        grid-template-columns: repeat(2, minmax(200px, 1fr));
+    @media only screen and (max-width: 1439px) {
+        margin: 6rem 4rem 4rem 4rem;
+        grid-template-columns: repeat(2, minmax(339px, 1fr));
     }
     @media only screen and (max-width: 768px) {
-        padding: 0 7.9rem;
-        grid-template-columns: repeat(1, minmax(200px, 1fr));
-    }
-    @media only screen and (max-width: 375px) {
-        padding: 0 4.8rem;
+        margin: 6rem 2.4rem 4rem 2.4rem;
+        grid-template-columns: repeat(1, minmax(320px, 1fr));
     }
 `;
