@@ -1,41 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 // Components
 import SingleJobCard from './SingleJobCard';
+import CustomButton from './CustomButton';
 
 const JobList = () => {
     // using useSelector to acces data from the store(global state)
     const JobsList = useSelector((state) => state.jobs);
     // in return mapping throught all joblist.data array and passing down data to SingleJobCard component to render each job on the screen
+
+    // setting state variable visibleJobs to hold number of jobs we want do display, initialy 12.
+    const [visibleJobs, setVisibleJobs] = useState(12);
+
+    // adding extra 12 jobs when clicking LOAD MORE button.
+    const handleLoadMore = () => {
+        setVisibleJobs((prevVisibleJobs) => prevVisibleJobs + 12);
+    };
     return (
-        <JobListContainer>
-            {JobsList.jobsList.status === 'idle' && <h2 className="h2-searchactions">Search For Jobs</h2>}
-            {JobsList.jobsList.status === 'success' && JobsList.jobsList.data.length === 0 && (
-                <h2 className="h2-searchactions">No Jobs Match Your Search, Try Again.</h2>
-            )}
-            {JobsList.jobsList.status === 'loading' ? (
-                <Loader
-                    className="center-spinner"
-                    type="TailSpin"
-                    color="#5964E0"
-                    height={150}
-                    width={150}
-                    timeout={3000} // 3 secs
-                />
-            ) : (
-                JobsList.jobsList.data.map((job) => <SingleJobCard key={job.id} job={job} />)
-            )}
-        </JobListContainer>
+        <PageContainer>
+            <JobListContainer>
+                {JobsList.jobsList.status === 'idle' && <h2 className="h2-searchactions">Search For Jobs</h2>}
+                {JobsList.jobsList.status === 'error' && (
+                    <h2 className="h2-searchactions">{JobsList.jobsList.error}</h2>
+                )}
+                {JobsList.jobsList.status === 'success' && JobsList.jobsList.data.length === 0 && (
+                    <h2 className="h2-searchactions">No Jobs Match Your Search, Try Again.</h2>
+                )}
+                {JobsList.jobsList.status === 'loading' ? (
+                    <Loader
+                        className="center-spinner"
+                        type="TailSpin"
+                        color="#5964E0"
+                        height={150}
+                        width={150}
+                        timeout={3000} // 3 secs
+                    />
+                ) : (
+                    JobsList.jobsList.data.slice(0, visibleJobs).map((job) => <SingleJobCard key={job.id} job={job} />)
+                )}
+            </JobListContainer>
+            <CustomButton className="load-more-button" onClick={handleLoadMore}>
+                Load More
+            </CustomButton>
+        </PageContainer>
     );
 };
 
 export default JobList;
 
-const JobListContainer = styled.section`
-    height: 50rem;
+const PageContainer = styled.section`
+    height: fit-content;
+    margin-bottom: 5rem;
+    position: relative;
+    .load-more-button {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+`;
+
+const JobListContainer = styled.div`
+    height: fit-content;
     background-color: var(--bg-color);
     display: grid;
     position: relative;

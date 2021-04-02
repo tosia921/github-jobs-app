@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 // Components
@@ -22,6 +22,16 @@ const SearchBar = () => {
     };
 
     const dispatch = useDispatch();
+
+    // fetching all jobs when app first renders/mounts.
+    useEffect(() => {
+        const PageLoadParams = {
+            description: 'all',
+            location,
+            full_time: fulltime,
+        };
+        dispatch(fetchJobList(PageLoadParams));
+    }, []);
 
     // handling Form submit(job search button)
     const handleSubmit = (e) => {
