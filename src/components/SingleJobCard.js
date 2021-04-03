@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const SingleJobCard = ({ job }) => {
     const { type, title, company, location } = job;
@@ -13,7 +14,7 @@ const SingleJobCard = ({ job }) => {
                 <span>&#8226;</span>
                 <p>{type}</p>
             </div>
-            <h2>{title}</h2>
+            <StyledTitleLink to={`jobs/${job.id}`}>{title}</StyledTitleLink>
             <p className="company-name">{company}</p>
             <p className="location">{location}</p>
         </StyledCard>
@@ -33,11 +34,6 @@ const StyledCard = styled.article`
     padding: 5rem 3.2rem 3.2rem 4.4rem;
     display: flex;
 
-    h2 {
-        color: var(--color-text-titles);
-        font-size: 2rem;
-        margin: 1.6rem 0;
-    }
     p {
         color: var(--color-text-small);
     }
@@ -70,4 +66,10 @@ const StyledCard = styled.article`
         box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         background-color: white;
     }
+`;
+
+const StyledTitleLink = styled(Link)`
+    color: var(--color-text-titles);
+    font-size: 2rem;
+    margin: 1.6rem 0;
 `;
