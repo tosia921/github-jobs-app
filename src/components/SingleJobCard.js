@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const SingleJobCard = ({ job }) => {
+    // destructuring values from job object
     const { type, title, company, location } = job;
+    // used to navigate to jobsDetails page.
+    const history = useHistory();
     return (
         <StyledCard>
             <div className="company-logo">
@@ -14,7 +17,7 @@ const SingleJobCard = ({ job }) => {
                 <span>&#8226;</span>
                 <p>{type}</p>
             </div>
-            <StyledTitleLink to={`jobs/${job.id}`}>{title}</StyledTitleLink>
+            <StyledTitleLink onClick={() => history.push(`jobs/${job.id}`)}>{title}</StyledTitleLink>
             <p className="company-name">{company}</p>
             <p className="location">{location}</p>
         </StyledCard>
@@ -33,6 +36,9 @@ const StyledCard = styled.article`
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
     padding: 5rem 3.2rem 3.2rem 4.4rem;
     display: flex;
+
+    h2 {
+    }
 
     p {
         color: var(--color-text-small);
@@ -72,4 +78,8 @@ const StyledTitleLink = styled(Link)`
     color: var(--color-text-titles);
     font-size: 2rem;
     margin: 1.6rem 0;
+    text-decoration: none;
+    &:hover {
+        color: var(--color-primary);
+    }
 `;
