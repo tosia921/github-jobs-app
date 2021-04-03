@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
@@ -15,6 +15,7 @@ const JobList = () => {
     const JobsToDisplay = useSelector((state) => state.jobs.visibleJobs);
 
     const dispatch = useDispatch();
+    console.log(JobsList.jobsList.data.length);
 
     // adding extra 12 jobs when clicking LOAD MORE button.
     const handleLoadMore = () => {
@@ -45,9 +46,16 @@ const JobList = () => {
                         .map((job) => <SingleJobCard key={job.id} job={job} />)
                 )}
             </JobListContainer>
-            <CustomButton className="load-more-button" onClick={handleLoadMore}>
-                Load More
-            </CustomButton>
+            {JobsList.jobsList.data.length > 0 &&
+                (JobsToDisplay < JobsList.jobsList.data.length ? (
+                    <CustomButton className="load-more-button" onClick={handleLoadMore}>
+                        Load More
+                    </CustomButton>
+                ) : (
+                    <CustomButton className="load-more-button" disabled>
+                        All Jobs Loaded
+                    </CustomButton>
+                ))}
         </PageContainer>
     );
 };
