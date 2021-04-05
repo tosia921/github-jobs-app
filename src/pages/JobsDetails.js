@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import ReactMarkdown from 'react-markdown';
+import styled from 'styled-components';
 
 const JobsDetails = () => {
     // accesing id of the job from the url using useParams react router hook.
@@ -12,7 +14,124 @@ const JobsDetails = () => {
 
     console.log({ CurrentJob });
 
-    return <div>{CurrentJob.description}</div>;
+    return (
+        <PageContent>
+            <SectionCompany>
+                <div className="company-logo">
+                    {CurrentJob.company_logo ? <img src={CurrentJob.company_logo} alt="Company Logo" /> : 'No Logo'}
+                </div>
+                <main>
+                    <h1>{CurrentJob.company}</h1>
+                    <a href={CurrentJob.company_url} target="_blank" rel="noreferrer">
+                        Company Site
+                    </a>
+                </main>
+            </SectionCompany>
+            <SectionDescription>
+                <ReactMarkdown source={CurrentJob.description} />
+            </SectionDescription>
+        </PageContent>
+    );
 };
 
 export default JobsDetails;
+
+const PageContent = styled.main`
+    background-color: var(--bg-color-body);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const SectionCompany = styled.section`
+    width: 73rem;
+    height: 14rem;
+    background-color: var(--bg-color-card);
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    margin-bottom: 3.2rem;
+    margin-top: -4rem;
+    display: flex;
+    overflow: hidden;
+
+    .company-logo {
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            max-height: 14rem;
+            max-width: 14rem;
+        }
+    }
+
+    main {
+        display: flex;
+        width: calc(100% - 14rem);
+        height: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 3rem;
+
+        h1 {
+            font-size: 2.4rem;
+            color: var(--color-text-titles);
+        }
+    }
+`;
+
+const SectionDescription = styled.section`
+    width: 73rem;
+    height: fit-content;
+    background-color: var(--bg-color-card);
+    border-radius: 10px;
+    padding: 4.5rem 5rem 6rem 5rem;
+    color: var(--color-text-p-tags);
+
+    strong {
+        color: var(--color-text-titles);
+        margin: 3rem 0;
+    }
+
+    p strong {
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 3rem 0;
+    }
+
+    li {
+        padding-left: 1em;
+        text-indent: -0.7em;
+    }
+
+    li::before {
+        content: '• ';
+        color: var(--color-primary); /* or whatever color you prefer */
+    }
+    p {
+        margin-bottom: 3rem;
+    }
+    a {
+        font-size: 1.6rem;
+        color: var(--color-primary);
+        font-weight: 700;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    em strong {
+        font-size: 1.6rem;
+    }
+`;

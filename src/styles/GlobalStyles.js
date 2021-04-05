@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
     --bg-color-card: #FFFFFF;
     --color-text-titles: #19202D; 
     --color-text-small: #9DAEC2;
+    --color-text-p-tags: #6E8098;
     --color-text-link: #5964E0;
     --color-button-primary: #5964E0;
     --color-button-primary-hover: #939BF4;
@@ -22,6 +23,7 @@ const GlobalStyles = createGlobalStyle`
     --bg-color-card: #19202D;
     --color-text-titles: #FFFFFF  ; 
     --color-text-small: #9DAEC2;
+    --color-text-p-tags: #9DAEC2;
     --color-text-link: #5964E0;
     --color-button-primary: #5964E0;
     --color-button-primary-hover: #939BF4;

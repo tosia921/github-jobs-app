@@ -29,6 +29,7 @@ const SearchBar = () => {
             description: 'all',
             location,
             full_time: fulltime,
+            markdown: 'true',
         };
         dispatch(fetchJobList(PageLoadParams));
     }, []);
