@@ -23,16 +23,16 @@ const SearchBar = () => {
 
     const dispatch = useDispatch();
 
-    // fetching all jobs when app first renders/mounts.
-    useEffect(() => {
-        const PageLoadParams = {
-            description: 'all',
-            location,
-            full_time: fulltime,
-            markdown: 'true',
-        };
-        dispatch(fetchJobList(PageLoadParams));
-    }, []);
+    // // fetching all jobs when app first renders/mounts.
+    // useEffect(() => {
+    //     const PageLoadParams = {
+    //         description: 'all',
+    //         location,
+    //         full_time: fulltime,
+    //         markdown: 'true',
+    //     };
+    //     dispatch(fetchJobList(PageLoadParams));
+    // }, []);
 
     // handling Form submit(job search button)
     const handleSubmit = (e) => {

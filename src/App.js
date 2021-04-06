@@ -1,5 +1,4 @@
 import React from 'react';
-// compnents
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // Pages

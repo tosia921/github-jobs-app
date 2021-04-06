@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const SingleJobCard = ({ job }) => {
     // destructuring values from job object
     const { type, title, company, location } = job;
-    // used to navigate to jobsDetails page.
-    const history = useHistory();
     return (
         <StyledCard>
             <div className="company-logo">
@@ -17,7 +15,7 @@ const SingleJobCard = ({ job }) => {
                 <span>&#8226;</span>
                 <p>{type}</p>
             </div>
-            <StyledTitleLink onClick={() => history.push(`jobs/${job.id}`)}>{title}</StyledTitleLink>
+            <StyledTitleLink to={`jobs/${job.id}`}>{title}</StyledTitleLink>
             <p className="company-name">{company}</p>
             <p className="location">{location}</p>
         </StyledCard>

@@ -1,19 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 // Optimized background Images
+import { useDispatch } from 'react-redux';
 import HeaderBackgroundDesktop from '../assets/desktop/bg-pattern-header.svg';
 import HeaderBackgroundMobile from '../assets/mobile/bg-pattern-header.svg';
 // Theme Switch Component
 import ColorThemeSwitch from './ColorThemeSwitch';
+// redux
+import { fetchJobList } from '../redux/jobs/jobsSlice';
 
-const Header = () => (
-    <StyledHeader>
-        <nav>
-            <h1>devjobs</h1>
-            <ColorThemeSwitch className="dark-mode" />
-        </nav>
-    </StyledHeader>
-);
+const Header = () => {
+    const dispatch = useDispatch();
+
+    // decided fetch all jobs when app first renders/mounts inside Header component, since it never rerenders again throught lifecycle of the app.
+    useEffect(() => {
+        const PageLoadParams = {
+            description: 'all',
+            full_time: 'true',
+            markdown: 'true',
+        };
+        dispatch(fetchJobList(PageLoadParams));
+    }, []);
+
+    return (
+        <StyledHeader>
+            <nav>
+                <h1>devjobs</h1>
+                <ColorThemeSwitch className="dark-mode" />
+            </nav>
+        </StyledHeader>
+    );
+};
 
 export default Header;
 
