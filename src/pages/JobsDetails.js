@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
+import CustomButton from '../components/CustomButton';
 
 const JobsDetails = () => {
     // accesing id of the job from the url using useParams react router hook.
@@ -21,10 +22,13 @@ const JobsDetails = () => {
                     {CurrentJob.company_logo ? <img src={CurrentJob.company_logo} alt="Company Logo" /> : 'No Logo'}
                 </div>
                 <main>
-                    <h1>{CurrentJob.company}</h1>
-                    <a href={CurrentJob.company_url} target="_blank" rel="noreferrer">
+                    <div className="name-and-site">
+                        <h1>{CurrentJob.company}</h1>
+                        <p>{CurrentJob.company_url}</p>
+                    </div>
+                    <CustomButton Secondary isLink goTo={CurrentJob.company_url}>
                         Company Site
-                    </a>
+                    </CustomButton>
                 </main>
             </SectionCompany>
             <SectionDescription>
@@ -73,9 +77,18 @@ const SectionCompany = styled.section`
         align-items: center;
         padding: 0 3rem;
 
-        h1 {
-            font-size: 2.4rem;
-            color: var(--color-text-titles);
+        .name-and-site {
+            display: flex;
+            flex-direction: column;
+            h1 {
+                font-size: 2.4rem;
+                color: var(--color-text-titles);
+                margin-bottom: 1.8rem;
+            }
+            p {
+                color: var(--color-text-small);
+                font-size: 1.6rem;
+            }
         }
     }
 `;

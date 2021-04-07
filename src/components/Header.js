@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 // Optimized background Images
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import HeaderBackgroundDesktop from '../assets/desktop/bg-pattern-header.svg';
 import HeaderBackgroundMobile from '../assets/mobile/bg-pattern-header.svg';
 // Theme Switch Component
@@ -25,7 +26,10 @@ const Header = () => {
     return (
         <StyledHeader>
             <nav>
-                <h1>devjobs</h1>
+                <Link to="/">
+                    <h1>devjobs</h1>
+                </Link>
+
                 <ColorThemeSwitch className="dark-mode" />
             </nav>
         </StyledHeader>

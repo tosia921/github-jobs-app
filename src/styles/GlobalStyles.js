@@ -12,8 +12,9 @@ const GlobalStyles = createGlobalStyle`
     --color-text-link: #5964E0;
     --color-button-primary: #5964E0;
     --color-button-primary-hover: #939BF4;
-    --color-button-secondary: #C9C9C9;  
-    --color-button-secondary-hover: #6E8098;
+    --color-button-secondary: #EEF0FC;  
+    --color-button-secondary-hover: #C5C9F4;
+    --color-text-link-button-secondary: #5964E0;
     --color-logo: #FFFFFF;   
   }
   body[data-theme='dark'] {
@@ -29,6 +30,7 @@ const GlobalStyles = createGlobalStyle`
     --color-button-primary-hover: #939BF4;
     --color-button-secondary: #303642;  
     --color-button-secondary-hover: #535862;
+    --color-text-link-button-secondary: #FFFFFF;
     --color-logo: #FFFFFF; 
   }
  
