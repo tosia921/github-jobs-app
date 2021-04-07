@@ -108,7 +108,7 @@ const SectionDescription = styled.section`
 
     p strong {
         margin-bottom: 2rem;
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
 
     ul {
@@ -129,6 +129,7 @@ const SectionDescription = styled.section`
     p {
         margin-bottom: 3rem;
     }
+
     a {
         font-size: 1.6rem;
         color: var(--color-primary);

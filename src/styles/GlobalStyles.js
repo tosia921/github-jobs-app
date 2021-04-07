@@ -11,6 +11,7 @@ const GlobalStyles = createGlobalStyle`
     --color-text-p-tags: #6E8098;
     --color-text-link: #5964E0;
     --color-button-primary: #5964E0;
+    --color-text-button-primary: #FFFFFF;
     --color-button-primary-hover: #939BF4;
     --color-button-secondary: #EEF0FC;  
     --color-button-secondary-hover: #C5C9F4;
