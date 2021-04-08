@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 import CustomButton from '../components/CustomButton';
 import BackgroundDetailFooter from '../assets/desktop/bg-pattern-detail-footer.svg';
+import UseCalcDateDIff from '../components/useCalcDateDiff';
 
 const JobsDetails = () => {
     // accesing id of the job from the url using useParams react router hook.
@@ -28,6 +29,9 @@ const JobsDetails = () => {
         HowToApplyUrl = CurrentJob.company_url;
     }
 
+    // Custom hook returning number of days that passed since job was posted.
+    const DaysPassed = UseCalcDateDIff(CurrentJob.created_at);
+
     return (
         <PageContent>
             <SectionCompany>
@@ -45,6 +49,20 @@ const JobsDetails = () => {
                 </main>
             </SectionCompany>
             <SectionDescription>
+                <div className="job-overview">
+                    <div className="content">
+                        <div className="type-time">
+                            <p>{DaysPassed}</p>
+                            <span>&#8226;</span>
+                            <p>{CurrentJob.type}</p>
+                        </div>
+                        <h2>{CurrentJob.title}</h2>
+                        <p className="location">{CurrentJob.location}</p>
+                    </div>
+                    <CustomButton isLink goTo={HowToApplyUrl}>
+                        Apply Now
+                    </CustomButton>
+                </div>
                 <ReactMarkdown source={CurrentJob.description} />
             </SectionDescription>
             <HowToApply>
@@ -128,6 +146,39 @@ const SectionDescription = styled.section`
     padding: 4.5rem 5rem 1rem 5rem;
     color: var(--color-text-p-tags);
     margin-bottom: 3.3rem;
+
+    .job-overview {
+        margin-bottom: 5.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .content {
+            h2 {
+                color: var(--color-text-titles);
+                margin-bottom: 2rem;
+            }
+            .type-time {
+                display: flex;
+                margin-bottom: 1rem;
+                p {
+                    margin-bottom: 0;
+                }
+                span {
+                    margin: 0 1rem;
+                    font-size: 1.5rem;
+                    color: var(--color-text-small);
+                }
+            }
+            .location {
+                color: var(--color-primary);
+                font-weight: 700;
+            }
+        }
+        button a {
+            color: #ffffff;
+            padding: 16px 25px;
+        }
+    }
 
     strong {
         color: var(--color-text-titles);
@@ -265,6 +316,7 @@ const JobDetailsFooter = styled.footer`
             margin-left: auto;
             a {
                 color: #ffffff;
+                padding: 16px 25px;
             }
         }
     }

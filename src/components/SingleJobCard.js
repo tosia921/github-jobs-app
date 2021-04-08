@@ -1,17 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import UseCalcDateDIff from './useCalcDateDiff';
 
 const SingleJobCard = ({ job }) => {
     // destructuring values from job object
     const { type, title, company, location } = job;
+    // Custom hook returning number of days that passed since job was posted.
+    const DaysPassed = UseCalcDateDIff(job.created_at);
     return (
         <StyledCard>
             <div className="company-logo">
                 {job.company_logo ? <img src={job.company_logo} alt="Company Logo" /> : 'No Logo'}
             </div>
             <div className="time-type">
-                <p>5 days ago</p>
+                <p>{DaysPassed}</p>
                 <span>&#8226;</span>
                 <p>{type}</p>
             </div>
@@ -49,9 +52,7 @@ const StyledCard = styled.article`
             margin: 0 1rem;
         }
     }
-    .company-name {
-        flex-grow: 1;
-    }
+
     .location {
         color: var(--color-primary);
         font-weight: 700;
