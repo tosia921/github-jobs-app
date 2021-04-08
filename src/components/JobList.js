@@ -15,7 +15,6 @@ const JobList = () => {
     const JobsToDisplay = useSelector((state) => state.jobs.visibleJobs);
 
     const dispatch = useDispatch();
-    console.log(JobsList.jobsList.data.length);
 
     // adding extra 12 jobs when clicking LOAD MORE button.
     const handleLoadMore = () => {

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 import CustomButton from '../components/CustomButton';
+import BackgroundDetailFooter from '../assets/desktop/bg-pattern-detail-footer.svg';
 
 const JobsDetails = () => {
     // accesing id of the job from the url using useParams react router hook.
@@ -13,7 +14,19 @@ const JobsDetails = () => {
     // iterating throught the array of all jobs to find he one that will match our id and assigning its value to the new variable.
     const CurrentJob = JobsListArray.find((job) => job.id === id);
 
-    console.log({ CurrentJob });
+    // in the code below we pull out array of matching url string's out of how_to_apply markdown field. the one we want is under index[0]
+    const HowToApplyString = CurrentJob.how_to_apply;
+    // matching ulr's inside string
+    const HowToApplyUrlsArray = HowToApplyString.match(
+        /(http|https|ftp|ftps):\/\/[a-zA-Z0-9\-.]+\.[a-zA-Z]{2,3}(\/\S*)?/
+    );
+    let HowToApplyUrl = '';
+    // in case there was no url's in a string, HowToApplyString.match will return null so we check...
+    if (HowToApplyUrlsArray) {
+        HowToApplyUrl = HowToApplyUrlsArray[0];
+    } else {
+        HowToApplyUrl = CurrentJob.company_url;
+    }
 
     return (
         <PageContent>
@@ -34,6 +47,20 @@ const JobsDetails = () => {
             <SectionDescription>
                 <ReactMarkdown source={CurrentJob.description} />
             </SectionDescription>
+            <HowToApply>
+                <h2>How to Apply</h2>
+                <div className="how-to-apply-content">
+                    <ReactMarkdown source={CurrentJob.how_to_apply} />
+                </div>
+            </HowToApply>
+            <JobDetailsFooter>
+                <div className="footer-content">
+                    <h2>{CurrentJob.title}</h2>
+                    <CustomButton isLink goTo={HowToApplyUrl}>
+                        Apply Now
+                    </CustomButton>
+                </div>
+            </JobDetailsFooter>
         </PageContent>
     );
 };
@@ -98,8 +125,9 @@ const SectionDescription = styled.section`
     height: fit-content;
     background-color: var(--bg-color-card);
     border-radius: 10px;
-    padding: 4.5rem 5rem 6rem 5rem;
+    padding: 4.5rem 5rem 1rem 5rem;
     color: var(--color-text-p-tags);
+    margin-bottom: 3.3rem;
 
     strong {
         color: var(--color-text-titles);
@@ -147,5 +175,100 @@ const SectionDescription = styled.section`
 
     em strong {
         font-size: 1.6rem;
+    }
+`;
+
+const HowToApply = styled.section`
+    width: 73rem;
+    height: 260px;
+    border-radius: 10px;
+    margin-bottom: 7.5rem;
+    padding: 4rem 8rem 4rem 5rem;
+    background-repeat: no-repeat;
+    background-image: url(${BackgroundDetailFooter});
+    h2 {
+        font-size: 2rem;
+        color: #ffffff;
+    }
+    .how-to-apply-content {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+    }
+    strong {
+        color: var(--color-text-titles);
+        margin: 3rem 0;
+    }
+
+    p strong {
+        margin-bottom: 2rem;
+        font-size: 1.6rem;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 3rem 0;
+    }
+
+    li {
+        padding-left: 1em;
+        text-indent: -0.7em;
+    }
+
+    li::before {
+        content: '• ';
+        color: var(--color-primary); /* or whatever color you prefer */
+    }
+    p {
+        margin-bottom: 3rem;
+    }
+
+    a {
+        font-size: 1.6rem;
+        color: #ffffff;
+        font-weight: 700;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    em strong {
+        font-size: 1.6rem;
+    }
+`;
+
+const JobDetailsFooter = styled.footer`
+    width: 100vw;
+    height: 9.6rem;
+    background-color: var(--bg-color-card);
+    display: flex;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .footer-content {
+        width: 73rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        button {
+            margin-left: auto;
+            a {
+                color: #ffffff;
+            }
+        }
+    }
+    h2 {
+        color: var(--color-text-titles);
     }
 `;
