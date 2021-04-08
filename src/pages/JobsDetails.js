@@ -199,11 +199,13 @@ const SectionDescription = styled.section`
     li {
         padding-left: 1em;
         text-indent: -0.7em;
+        display: flex;
     }
 
     li::before {
         content: '• ';
         color: var(--color-primary); /* or whatever color you prefer */
+        margin-right: 1rem;
     }
     p {
         margin-bottom: 3rem;
