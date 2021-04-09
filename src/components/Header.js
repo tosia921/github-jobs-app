@@ -46,7 +46,7 @@ const StyledHeader = styled.header`
     @media only screen and (min-width: 1440px) {
         background-size: 100% 99%;
     }
-    @media only screen and (max-width: 375px) {
+    @media only screen and (max-width: 768px) {
         background-image: url(${HeaderBackgroundMobile});
         height: 136px;
         background-size: 100% 100%;
@@ -57,11 +57,14 @@ const StyledHeader = styled.header`
         display: flex;
         justify-content: space-between;
         align-items: center;
+        @media only screen and (max-width: 1440px) {
+            padding: 4.4rem 4rem 0 4rem;
+        }
         @media only screen and (max-width: 768px) {
-            padding: 4.4rem 7.9rem 0 7.9rem;
+            padding: 4.4rem 2.5rem 0 2.5rem;
         }
         @media only screen and (max-width: 375px) {
-            padding: 3.2rem 4.8rem 0 4.8rem;
+            padding: 3.2rem 2.5rem 0 2.5rem;
         }
         h1 {
             color: var(--color-logo);

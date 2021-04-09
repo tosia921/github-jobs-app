@@ -92,6 +92,8 @@ const PageContent = styled.main`
     align-items: center;
 `;
 
+// Content Header Styles
+
 const SectionCompany = styled.section`
     width: 73rem;
     height: 14rem;
@@ -101,16 +103,36 @@ const SectionCompany = styled.section`
     margin-bottom: 3.2rem;
     margin-top: -4rem;
     display: flex;
-    overflow: hidden;
+
+    @media only screen and (max-width: 768px) {
+        width: 90vw;
+        height: 23rem;
+        position: relative;
+        border-top-left-radius: 10px;
+        margin-top: -2rem;
+    }
 
     .company-logo {
         background-color: #ffffff;
         display: flex;
         justify-content: center;
         align-items: center;
+        @media only screen and (max-width: 768px) {
+            position: absolute;
+            top: -2.5rem;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
         img {
             max-height: 14rem;
             max-width: 14rem;
+            @media only screen and (max-width: 768px) {
+                height: 5rem;
+                width: 5rem;
+                border-radius: 10px;
+            }
         }
     }
 
@@ -121,10 +143,21 @@ const SectionCompany = styled.section`
         justify-content: space-between;
         align-items: center;
         padding: 0 3rem;
+        @media only screen and (max-width: 768px) {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
 
         .name-and-site {
             display: flex;
             flex-direction: column;
+            @media only screen and (max-width: 768px) {
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2rem;
+            }
             h1 {
                 font-size: 2.4rem;
                 color: var(--color-text-titles);
@@ -138,6 +171,8 @@ const SectionCompany = styled.section`
     }
 `;
 
+// SectionDescription Styles
+
 const SectionDescription = styled.section`
     width: 73rem;
     height: fit-content;
@@ -146,12 +181,20 @@ const SectionDescription = styled.section`
     padding: 4.5rem 5rem 1rem 5rem;
     color: var(--color-text-p-tags);
     margin-bottom: 3.3rem;
+    overflow-wrap: break-word;
+    @media only screen and (max-width: 768px) {
+        width: 90vw;
+    }
 
     .job-overview {
         margin-bottom: 5.5rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        @media only screen and (max-width: 768px) {
+            flex-direction: column;
+            align-items: flex-start;
+        }
         .content {
             h2 {
                 color: var(--color-text-titles);
@@ -172,6 +215,12 @@ const SectionDescription = styled.section`
             .location {
                 color: var(--color-primary);
                 font-weight: 700;
+            }
+        }
+        button {
+            @media only screen and (max-width: 768px) {
+                display: block;
+                width: 100%;
             }
         }
         button a {
@@ -231,6 +280,8 @@ const SectionDescription = styled.section`
     }
 `;
 
+// HowToApply Section Styles
+
 const HowToApply = styled.section`
     width: 73rem;
     height: 260px;
@@ -239,6 +290,9 @@ const HowToApply = styled.section`
     padding: 4rem 8rem 4rem 5rem;
     background-repeat: no-repeat;
     background-image: url(${BackgroundDetailFooter});
+    @media only screen and (max-width: 768px) {
+        width: 90vw;
+    }
     h2 {
         font-size: 2rem;
         color: #ffffff;
@@ -314,8 +368,17 @@ const JobDetailsFooter = styled.footer`
         height: 100%;
         display: flex;
         align-items: center;
+        @media only screen and (max-width: 768px) {
+            justify-content: center;
+            width: 90vw;
+        }
         button {
             margin-left: auto;
+            @media only screen and (max-width: 768px) {
+                display: block;
+                width: 90%;
+                margin-left: 0;
+            }
             a {
                 color: #ffffff;
                 padding: 16px 25px;
@@ -324,5 +387,8 @@ const JobDetailsFooter = styled.footer`
     }
     h2 {
         color: var(--color-text-titles);
+        @media only screen and (max-width: 768px) {
+            display: none;
+        }
     }
 `;

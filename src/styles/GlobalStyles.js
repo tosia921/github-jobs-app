@@ -16,7 +16,9 @@ const GlobalStyles = createGlobalStyle`
     --color-button-secondary: #EEF0FC;  
     --color-button-secondary-hover: #C5C9F4;
     --color-text-link-button-secondary: #5964E0;
-    --color-logo: #FFFFFF;   
+    --color-logo: #FFFFFF;
+    --searchbar-filter: #6E8098; 
+    --input-background-color: #E8E8EA;
   }
   body[data-theme='dark'] {
     --color-primary: #5964E0;
@@ -33,6 +35,8 @@ const GlobalStyles = createGlobalStyle`
     --color-button-secondary-hover: #535862;
     --color-text-link-button-secondary: #FFFFFF;
     --color-logo: #FFFFFF; 
+    --searchbar-filter: #FFFFFF;
+    --input-background-color: #303742; 
   }
  
   html {
@@ -51,6 +55,8 @@ const GlobalStyles = createGlobalStyle`
   img {
     max-width: 100%;
   }
+
+  
 `;
 
 export default GlobalStyles;

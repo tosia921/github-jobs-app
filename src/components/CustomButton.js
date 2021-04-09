@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledButton = styled.button`
     background-color: ${(props) => (props.Secondary ? 'var(--color-button-secondary)' : 'var(--color-button-primary)')};
-    color: var(--color-text-button-primary);
+    color: #ffffff;
     padding: 1.6rem 1.6rem !important;
     font-size: 1.6rem;
     font-weight: 700;

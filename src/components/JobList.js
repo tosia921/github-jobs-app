@@ -63,19 +63,17 @@ export default JobList;
 
 const PageContainer = styled.section`
     height: fit-content;
-    margin-bottom: 5rem;
     position: relative;
+    margin-bottom: 17rem;
     .load-more-button {
-        margin-top: 3rem;
-        margin-bottom: 3rem;
         position: absolute;
         left: 50%;
+        bottom: -10rem;
         transform: translateX(-50%);
     }
 `;
 
 const JobListContainer = styled.div`
-    height: fit-content;
     background-color: var(--bg-color);
     display: grid;
     position: relative;
@@ -87,7 +85,7 @@ const JobListContainer = styled.div`
     }
     @media only screen and (max-width: 1439px) {
         margin: 6rem 4rem 4rem 4rem;
-        grid-template-columns: repeat(2, minmax(339px, 1fr));
+        grid-template-columns: repeat(2, minmax(300px, 1fr));
     }
     @media only screen and (max-width: 768px) {
         margin: 6rem 2.4rem 4rem 2.4rem;
