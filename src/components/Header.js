@@ -21,7 +21,7 @@ const Header = () => {
             markdown: 'true',
         };
         dispatch(fetchJobList(PageLoadParams));
-    }, []);
+    }, [dispatch]);
 
     return (
         <StyledHeader>

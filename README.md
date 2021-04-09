@@ -8,7 +8,7 @@ This is a solution to the [GitHub Jobs API challenge on Frontend Mentor](https:/
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
     - [The challenge](#the-challenge)
-    - [Screenshot](#screenshot)
+    - [Screenshot's](#screenshots)
     - [Links](#links)
   - [My process](#my-process)
     - [Built with](#built-with)
@@ -32,7 +32,7 @@ Users should be able to:
 - Be able to click a job from the index page so that they can read more information and apply for the job
 - **Bonus**: Have the correct color scheme chosen for them based on their computer preferences. _Hint_: Research `prefers-color-scheme` in CSS.
 
-### Screenshot
+### Screenshot's
 
 ![](./screenshots/githubJobsLightHomeDesktop.png)
 ![](./screenshots/githubJobsLightJobdetailsDesktop.png)
@@ -53,12 +53,10 @@ Users should be able to:
 - CSS custom properties
 - Flexbox
 - CSS Grid
-- Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
+- [Redux Toolkit](https://redux-toolkit.js.org/) - State management library
 - [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- [Framer Motion](https://www.framer.com/api/motion/) - For animations
 
 ### What I learned
 
