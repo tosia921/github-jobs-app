@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const url = '/positions.json';
+const url = 'https://jobs.github.com/positions.json';
+const proxy = 'https://pacific-taiga-98536.herokuapp.com/';
 
 export const fetchJobList = createAsyncThunk('jobs/fetchJobs', async (params) => {
     const response = await axios
-        .get(url, {
+        .get(proxy + url, {
             params: { ...params },
         })
         .then((res) => res.data)
