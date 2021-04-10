@@ -290,6 +290,7 @@ const HowToApply = styled.section`
     padding: 4rem 8rem 4rem 5rem;
     background-repeat: no-repeat;
     background-image: url(${BackgroundDetailFooter});
+    word-break: break-all;
     @media only screen and (max-width: 768px) {
         width: 90vw;
     }
@@ -338,6 +339,7 @@ const HowToApply = styled.section`
         font-size: 1.6rem;
         color: #ffffff;
         font-weight: 700;
+        word-break: break-all;
     }
 
     h2,

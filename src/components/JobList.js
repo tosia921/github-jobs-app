@@ -89,7 +89,7 @@ const JobListContainer = styled.div`
     }
     @media only screen and (max-width: 768px) {
         margin: 6rem 2.4rem 4rem 2.4rem;
-        grid-template-columns: repeat(1, minmax(320px, 1fr));
+        grid-template-columns: repeat(1, minmax(250px, 1fr));
     }
     .center-spinner,
     .h2-searchactions {
