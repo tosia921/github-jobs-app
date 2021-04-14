@@ -10,7 +10,7 @@ import locationIcon from '../assets/desktop/icon-location.svg';
 import IconSearchMobile from '../assets/mobile/icon-search-mobile.svg';
 import { ReactComponent as FilterIcon } from '../assets/mobile/icon-filter.svg';
 // Redux AsyncThunk and action's
-import { fetchJobList, setDefaultJobs } from '../redux/jobs/jobsSlice';
+import { fetchJobList, setParams } from '../redux/jobs/jobsSlice';
 
 const SearchBar = () => {
     // defining state for each input field
@@ -38,10 +38,11 @@ const SearchBar = () => {
             location,
             full_time: fulltime,
             markdown: 'true',
+            page: 1,
         };
         // dispatching fetchJobList action to get the data back
         dispatch(fetchJobList(params));
-        dispatch(setDefaultJobs());
+        dispatch(setParams(params));
     };
 
     // handleing submit while filtering in mobile view isnide PopUp window
@@ -50,14 +51,14 @@ const SearchBar = () => {
         e.preventDefault();
         // setting params object to input values
         const params = {
-            description,
-            location,
+            description: 'all',
+            location: 'any',
             full_time: fulltime,
             markdown: 'true',
         };
         // dispatching fetchJobList action to get the data back
         dispatch(fetchJobList(params));
-        dispatch(setDefaultJobs());
+        dispatch(setParams(params));
         // closing pop up
         setShowPopUp(!showPopUp);
     };

@@ -16,8 +16,8 @@ const Header = () => {
     // decided fetch all jobs when app first renders/mounts inside Header component, since it never rerenders again throught lifecycle of the app.
     useEffect(() => {
         const PageLoadParams = {
-            description: 'all',
-            full_time: 'true',
+            description: '',
+            full_time: '',
             markdown: 'true',
         };
         dispatch(fetchJobList(PageLoadParams));

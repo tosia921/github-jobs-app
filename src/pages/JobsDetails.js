@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
@@ -6,6 +6,15 @@ import styled from 'styled-components';
 import CustomButton from '../components/CustomButton';
 import BackgroundDetailFooter from '../assets/desktop/bg-pattern-detail-footer.svg';
 import UseCalcDateDIff from '../components/useCalcDateDiff';
+
+// function that scrolls our page to the top while navigating to the page.
+function ScrollToTopOnMount() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    return null;
+}
 
 const JobsDetails = () => {
     // accesing id of the job from the url using useParams react router hook.
@@ -34,6 +43,7 @@ const JobsDetails = () => {
 
     return (
         <PageContent>
+            <ScrollToTopOnMount />
             <SectionCompany>
                 <div className="company-logo">
                     {CurrentJob.company_logo ? <img src={CurrentJob.company_logo} alt="Company Logo" /> : 'No Logo'}

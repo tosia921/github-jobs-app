@@ -7,19 +7,24 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import SingleJobCard from './SingleJobCard';
 import CustomButton from './CustomButton';
 // Redux actions
-import { addNextJobs } from '../redux/jobs/jobsSlice';
+// import { addNextJobs } from '../redux/jobs/jobsSlice';
+import { fetchMoreJobs } from '../redux/jobs/jobsSlice';
 
 const JobList = () => {
     // using useSelector to acces data from the store(global state)
     const JobsList = useSelector((state) => state.jobs);
-    const JobsToDisplay = useSelector((state) => state.jobs.visibleJobs);
+    const MoreJobs = useSelector((state) => state.jobs.moreJobs);
+    const searchParams = useSelector((state) => state.jobs.searchParams);
+    const isNextPage = useSelector((state) => state.jobs.isNextPage);
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); // Dispatch function for redux
 
-    // adding extra 12 jobs when clicking LOAD MORE button.
-    const handleLoadMore = () => {
-        dispatch(addNextJobs());
+    // function that handles loading more jobs button
+    const HandleLoadMore = () => {
+        dispatch(fetchMoreJobs(searchParams));
     };
+
+    // listening for page change that will indicate we need to fetch for more jobs
     return (
         <PageContainer>
             <JobListContainer>
@@ -37,17 +42,17 @@ const JobList = () => {
                         color="#5964E0"
                         height={150}
                         width={150}
-                        timeout={3000} // 3 secs
+                        timeout={10000} // 10 secs
                     />
                 ) : (
-                    JobsList.jobsList.data
-                        .slice(0, JobsToDisplay)
-                        .map((job) => <SingleJobCard key={job.id} job={job} />)
+                    JobsList.jobsList.data.map((job) => <SingleJobCard key={job.id} job={job} />)
                 )}
             </JobListContainer>
-            {JobsList.jobsList.data.length > 0 &&
-                (JobsToDisplay < JobsList.jobsList.data.length ? (
-                    <CustomButton className="load-more-button" onClick={handleLoadMore}>
+
+            {MoreJobs.status === 'idle' &&
+                JobsList.jobsList.data.length > 0 &&
+                (isNextPage ? (
+                    <CustomButton className="load-more-button" onClick={HandleLoadMore}>
                         Load More
                     </CustomButton>
                 ) : (
@@ -55,6 +60,28 @@ const JobList = () => {
                         All Jobs Loaded
                     </CustomButton>
                 ))}
+            {MoreJobs.status === 'success' &&
+                JobsList.jobsList.data.length > 0 &&
+                (isNextPage ? (
+                    <CustomButton className="load-more-button" onClick={HandleLoadMore}>
+                        Load More
+                    </CustomButton>
+                ) : (
+                    <CustomButton className="load-more-button" disabled>
+                        All Jobs Loaded
+                    </CustomButton>
+                ))}
+            {MoreJobs.status === 'loading' && (
+                <Loader
+                    className="center-load-more-spinner"
+                    type="TailSpin"
+                    color="#5964E0"
+                    height={100}
+                    width={100}
+                    timeout={10000} // 10 secs
+                />
+            )}
+            {MoreJobs.status === 'error' && <h2 className="h2-searchactions">{MoreJobs.error}</h2>}
         </PageContainer>
     );
 };
@@ -70,6 +97,11 @@ const PageContainer = styled.section`
         left: 50%;
         bottom: -10rem;
         transform: translateX(-50%);
+    }
+    .center-load-more-spinner {
+        display: flex;
+        justify-content: center;
+        width: 100vw;
     }
 `;
 
