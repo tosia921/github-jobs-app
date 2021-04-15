@@ -16,9 +16,6 @@ This is a solution to the [GitHub Jobs API challenge on Frontend Mentor](https:/
     - [Continued development](#continued-development)
     - [Useful resources](#useful-resources)
   - [Author](#author)
-  - [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -41,8 +38,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://606faa44d2e08e0008c8c529--unruffled-joliot-4a7262.netlify.app/)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Frontendmentor.io solution](https://www.frontendmentor.io/solutions/github-jobs-api-using-react-and-redux-toolkit-IJFop1Gfj)
+- Live Site URL: [Live Website](https://unruffled-joliot-4a7262.netlify.app/)
 
 ## My process
 
@@ -59,53 +56,221 @@ Users should be able to:
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+In this project i learned:
 
-To see how you can add code snippets, see below:
+- How to make api calls using Redux Toolkit function, and handle paginated Api - createAsyncThunk (It is a function that accepts a Redux action type string and a callback function that should return a promise.)
 
-```html
-<h1>Some HTML code I'm proud of</h1>
+```js
+export const fetchJobList = createAsyncThunk(
+  "jobs/fetchJobs",
+  async (params) => {
+    const response = await axios
+      .get(proxy + url, {
+        params: { ...params, page: 0 },
+      })
+      .then((res) => res.data)
+      .catch((error) => error);
+    return response;
+  }
+);
 ```
 
-```css
-.proud-of-this-css {
-  color: papayawhip;
+- how to handle different state's of fetch request to be able to display either loading spinner or Error if fetch request fails
+
+```js
+// pending action for fetcJobList thunk
+        [fetchJobList.pending]: (state) => {
+            state.jobsList = {
+                status: 'loading',
+                data: [],
+                error: {},
+            };
+        },
+        // fulfilled action for fetcJobList thunk
+        [fetchJobList.fulfilled]: (state, action) => {
+            state.jobsList.data = [];
+            state.jobsList = {
+                status: 'success',
+                data: action.payload,
+                error: {},
+            };
+
+            if (state.jobsList.data.length < 50) {
+                state.isNextPage = false;
+            } else {
+                state.isNextPage = true;
+            }
+            state.searchParams.page = 2;
+        },
+        // error action for fetchJobList thunk
+        [fetchJobList.rejected]: (state, action) => {
+            state.jobsList = {
+                status: 'error',
+                data: [],
+                error: action.payload,
+            };
+        },
+```
+
+- How to create dynamic routes using react router
+
+```js
+<Route path="/jobs/:id" exact>
+  <JobsDetails />
+</Route>
+```
+
+- How to reset scroll position when navigating to the page
+
+```js
+function ScrollToTopOnMount() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return null;
 }
 ```
 
-```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
+```html
+<main>
+  <ScrollToTopOnMount />
+</main
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+-- How to conditionaly render Load More button, or spinner or display Error based on fetch call state.
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+```js
+{
+  MoreJobs.status === "idle" &&
+    JobsList.jobsList.data.length > 0 &&
+    (isNextPage ? (
+      <CustomButton className="load-more-button" onClick={HandleLoadMore}>
+        Load More
+      </CustomButton>
+    ) : (
+      <CustomButton className="load-more-button" disabled>
+        All Jobs Loaded
+      </CustomButton>
+    ));
+}
+{
+  MoreJobs.status === "success" &&
+    JobsList.jobsList.data.length > 0 &&
+    (isNextPage ? (
+      <CustomButton className="load-more-button" onClick={HandleLoadMore}>
+        Load More
+      </CustomButton>
+    ) : (
+      <CustomButton className="load-more-button" disabled>
+        All Jobs Loaded
+      </CustomButton>
+    ));
+}
+{
+  MoreJobs.status === "loading" && (
+    <Loader
+      className="center-load-more-spinner"
+      type="TailSpin"
+      color="#5964E0"
+      height={100}
+      width={100}
+      timeout={10000} // 10 secs
+    />
+  );
+}
+{
+  MoreJobs.status === "error" && (
+    <h2 className="h2-searchactions">{MoreJobs.error}</h2>
+  );
+}
+```
+
+- How to write custom Hooks, this one below calculates days since the job was posted:
+
+```js
+function UseCalcDateDIff(date) {
+  // parsing given date into miliseconds since year 1970
+  const ParsedDate = Date.parse(date);
+  // getting current date
+  const CurrentDate = new Date();
+  // getting miliseconds of new date since year 1970
+  const ParsedCurrentDate = CurrentDate.getTime();
+  // calculating difference, dividing by number of miliseconds in a day, and rounding up so end results is differnce in days.
+  const NumOfDaysAgo = Math.round(
+    (ParsedCurrentDate - ParsedDate) / (1000 * 60 * 60 * 24)
+  );
+  // conditionaly returning Date difference either us today, yestarday or num of days ago.
+  if (NumOfDaysAgo === 0) {
+    return "Today";
+  }
+  if (NumOfDaysAgo === 1) {
+    return "Yesterday";
+  }
+  if (NumOfDaysAgo > 1) {
+    return `${NumOfDaysAgo} day's ago`;
+  }
+}
+
+export default UseCalcDateDIff;
+```
+
+and this is how you call it:
+
+```js
+//passing inside api response
+const DaysPassed = UseCalcDateDIff(CurrentJob.created_at);
+```
+
+- How to use css repeat() and minmax() functions while working with css grid:
+
+```css
+grid-template-columns: repeat(2, minmax(300px, 1fr));
+```
+
+- How to use css Custom Properties(variables) and how easy it is to create light and dark mode with help of [attribute*=value] selector.
+
+```css
+body[data-theme='light'] {
+    --color-primary: #5964E0;
+    --color-primary-light: #939BF4;
+    ...
+    --searchbar-filter: #6E8098;
+    --input-background-color: #E8E8EA;
+  }
+  body[data-theme='dark'] {
+    --color-primary: #5964E0;
+    --color-primary-light: #939BF4;
+    ...
+    --searchbar-filter: #FFFFFF;
+    --input-background-color: #303742;
+  }
+```
+
+- How to transform markdown data into Html to display it on a page using react-markdown lib:
+
+```js
+import ReactMarkdown from "react-markdown";
+// It's that easy!
+<ReactMarkdown source={CurrentJob.description} />;
+```
+
+- And many many more :)
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+On a future projects I would like to increase complexity, to make full use of redux library and polish my skills with it, and maybe connect my App to my own database.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [WesBos's eslint, prettier setup guide](https://github.com/wesbos/eslint-config-wesbos) - This helped me setup Eslint and preetier in my application
+- [Youtube video](https://www.youtube.com/watch?v=xtD4YMKWI7w&ab_channel=Rowadz) - This is an amazing youtube tutorial on how to use redux toolkit, and createAsyncThunk function within it.
+- [Redux Toolkit Docs](https://redux-toolkit.js.org/) - Everyone appreciates well writen doc's and redux toolkit doc's are definitly one of them. I really liked this pattern os setting up global state and will use it going forward.
+- [React Router Doc's](https://reactrouter.com/web/guides/scroll-restoration) - Can't stress enought how much well writen doc's help in every developer's day to day work. Used them to setup router, create dynamic routes aswell as figure how restore scroll position while navigating between pages.
 
 **Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Frontend Mentor - [@tosia921](https://www.frontendmentor.io/profile/tosia921)
+- LinkedIn - [Tomasz Posiadala](https://www.linkedin.com/in/tomasz-posiada%C5%82a-3a05391b0/)

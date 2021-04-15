@@ -50,7 +50,7 @@ const JobsDetails = () => {
                 </div>
                 <main>
                     <div className="name-and-site">
-                        <h1>{CurrentJob.company}</h1>
+                        <h2>{CurrentJob.company}</h2>
                         <p>{CurrentJob.company_url}</p>
                     </div>
                     <CustomButton Secondary isLink goTo={CurrentJob.company_url}>
@@ -168,7 +168,7 @@ const SectionCompany = styled.section`
                 align-items: center;
                 margin-bottom: 2rem;
             }
-            h1 {
+            h2 {
                 font-size: 2.4rem;
                 color: var(--color-text-titles);
                 margin-bottom: 1.8rem;

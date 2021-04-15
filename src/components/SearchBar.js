@@ -150,12 +150,7 @@ const SearchForm = styled.form`
         &:not(:first-child) {
             padding-left: 2.2rem;
         }
-        &:not(:last-child) {
-            border-right: 1px solid #979797;
-            @media only screen and (max-width: 768px) {
-                border-right: none;
-            }
-        }
+
         img {
             @media only screen and (max-width: 768px) {
                 display: none;
@@ -184,6 +179,10 @@ const SearchForm = styled.form`
 
     .input-search {
         width: 40%;
+        border-right: 1px solid #979797;
+        @media only screen and (max-width: 768px) {
+            border-right: none;
+        }
         @media only screen and (max-width: 930px) {
             width: 30%;
         }
@@ -193,6 +192,10 @@ const SearchForm = styled.form`
     }
 
     .input-location {
+        border-right: 1px solid #979797;
+        @media only screen and (max-width: 768px) {
+            border-right: none;
+        }
         width: 30%;
         @media only screen and (max-width: 930px) {
             width: 30%;
