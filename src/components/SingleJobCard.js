@@ -18,7 +18,9 @@ const SingleJobCard = ({ job }) => {
                 <span>&#8226;</span>
                 <p>{type}</p>
             </div>
-            <StyledTitleLink to={`jobs/${job.id}`}>{title}</StyledTitleLink>
+            <StyledTitleLink to={`jobs/${job.id}`}>
+                <h2>{title}</h2>
+            </StyledTitleLink>
             <p className="company-name">{company}</p>
             <p className="location">{location}</p>
         </StyledCard>
@@ -39,6 +41,8 @@ const StyledCard = styled.article`
     display: flex;
 
     h2 {
+        font-size: 2rem;
+        font-weight: 400;
     }
 
     p {
@@ -70,6 +74,9 @@ const StyledCard = styled.article`
         left: 30px;
         box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         background-color: white;
+    }
+    .company-name {
+        flex-grow: 1;
     }
 `;
 
