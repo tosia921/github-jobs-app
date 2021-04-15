@@ -42,7 +42,7 @@ const StyledCard = styled.article`
 
     h2 {
         font-size: 2rem;
-        font-weight: 400;
+        font-weight: 600;
     }
 
     p {

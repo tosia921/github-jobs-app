@@ -92,6 +92,7 @@ const PageContainer = styled.section`
     height: fit-content;
     position: relative;
     margin-bottom: 17rem;
+    margin-top: 10rem;
     .load-more-button {
         position: absolute;
         left: 50%;
