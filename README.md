@@ -138,7 +138,7 @@ function ScrollToTopOnMount() {
 </main
 ```
 
--- How to conditionaly render Load More button, or spinner or display Error based on fetch call state.
+- How to conditionaly render Load More button, or spinner or display Error based on fetch call state.
 
 ```js
 {
@@ -267,8 +267,6 @@ On a future projects I would like to increase complexity, to make full use of re
 - [Youtube video](https://www.youtube.com/watch?v=xtD4YMKWI7w&ab_channel=Rowadz) - This is an amazing youtube tutorial on how to use redux toolkit, and createAsyncThunk function within it.
 - [Redux Toolkit Docs](https://redux-toolkit.js.org/) - Everyone appreciates well writen doc's and redux toolkit doc's are definitly one of them. I really liked this pattern os setting up global state and will use it going forward.
 - [React Router Doc's](https://reactrouter.com/web/guides/scroll-restoration) - Can't stress enought how much well writen doc's help in every developer's day to day work. Used them to setup router, create dynamic routes aswell as figure how restore scroll position while navigating between pages.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
 
 ## Author
 
